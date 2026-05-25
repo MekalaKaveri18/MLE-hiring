@@ -810,7 +810,6 @@ def process_ticket(issue_raw: str, subject: str, company: str) -> dict:
             "damages",
             "contract",
             "exit clauses",
-            "ico",
             "gdpr article 17",
             "formally binding",
             "complaint with the ico",
@@ -1120,7 +1119,7 @@ def process_ticket(issue_raw: str, subject: str, company: str) -> dict:
             )
 
     if primary_product == "visa":
-        if _text_has_any(semantic_lower, ["carte visa", "tarjeta", "bloqu", "voyage"]) and "visa" in semantic_lower:
+        if "visa" in semantic_lower and "voyage" in semantic_lower and ("carte visa" in semantic_lower or "bloqu" in semantic_lower):
             docs = _collect_docs(query, "visa", preferred_paths=[VISA_SUPPORT, VISA_TRAVEL], top_k=3)
             response = (
                 "Visa's travel-support guidance says cardholders with a blocked card while traveling should contact Visa Global Customer Assistance Services or their issuer for card blocking, emergency cash, or emergency replacement support where applicable. "
